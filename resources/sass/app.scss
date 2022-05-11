@@ -1,1 +1,18 @@
-//
+@import "~bootstrap/scss/bootstrap";
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html{
+    font-family:sans-serif;
+    color: rgb(39, 39, 39);
+    
+}
+header{
+    background-color: rgb(225, 146, 0);
+    height: 3em;
+    display: flex;
+    align-items: center;
+}
