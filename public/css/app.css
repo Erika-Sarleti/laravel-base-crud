@@ -12191,3 +12191,22 @@ header {
   align-items: center;
 }
 
+.card-container {
+  display: flex;
+  max-width: 80%;
+  margin: 0 auto;
+  justify-content: space-evenly;
+}
+
+.card {
+  max-height: 15%;
+  width: 15%;
+}
+
+.card img {
+  -o-object-fit: contain;
+     object-fit: contain;
+  height: 100%;
+  width: 100%;
+}
+

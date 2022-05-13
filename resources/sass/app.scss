@@ -16,3 +16,19 @@ header{
     display: flex;
     align-items: center;
 }
+.card-container{
+    display: flex;
+    max-width: 80%;
+    margin: 0 auto;
+    justify-content: space-evenly;
+}
+.card{
+    // max-height:;
+    max-height:15%;
+    width: 15%;
+    img{
+        object-fit: contain;
+        height: 100%;
+        width:100%;
+    }
+}
