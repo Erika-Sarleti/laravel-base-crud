@@ -45,5 +45,11 @@
                     <label for="sale_date" class="form-label">sale_date</label>
                     <input type="date" class="form-control" id="sale_date" name="sale_date" value="{{ $comic->sale_date }}">
                 </div>
+                <a href=" {{route('comics.delete', $comic->id)}} "></a>
+                <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+        </div>
+    </div>
+</div>
 @endsection
 

@@ -4,9 +4,17 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Comic;
+use Illuminate\Validation\Rule;
 
 class ComicController extends Controller
 {
+    protected $validationRules = [
+        'title'=> 'required|unique:comics|min:5|max:100',
+        'thumb'=> 'nullable|url|max:250',
+        'series'=> 'nullable|max:100',
+
+
+    ];
     /**
      * Display a listing of the resource.
      *
@@ -71,9 +79,21 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $this->validationRules['title'] = [
+            'required',
+            Rule::unique('comics')->ignore($comic),
+            'min:5',
+            'max:100',
+
+        ];
+        
+        $request->validate($this->validationRules);
+
+        $formData = $request->all();
+        $comic->update($formData);
+        return redirect()->route('comics.show', $comic->id);
     }
 
     /**
@@ -82,7 +102,7 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic)
     {
         //
     }
