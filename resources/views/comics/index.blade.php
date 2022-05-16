@@ -14,6 +14,7 @@
         @endforeach
     </div>
     {{ $comics->links() }}
+    <a href=" {{route('comics.create')}} ">Create</a>
 </main>
 @endsection
 

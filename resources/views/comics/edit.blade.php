@@ -23,7 +23,6 @@
                 <div class="mb-3">
                     <label for="image" class="form-label">Image</label>
                     <input type="url" class="form-control" id="image" name="thumb" value="{{ $comic->thumb }}">
-                  </div>
                 <div class="mb-3">
                   <label for="title" class="form-label">Title</label>
                   <input type="text" class="form-control" id="title" name="title" value="{{ $comic->title }}">
@@ -38,15 +37,20 @@
                     <input type="text" class="form-control" id="type" name="type" value="{{ $comic->type }}">
                 </div>
                 <div class="mb-3">
-                    <label for="price" class="form-label">Price</label>
-                    <input type="number" class="form-control" id="price" name="price" value="{{ $comic->price }}">
+                    <label for="price" class="form-label" >Price</label>
+                    <input type="number" min="1" step="any" class="form-control" id="price" name="price" value="{{ $comic->price }}">
                 </div>
                 <div class="mb-3">
                     <label for="sale_date" class="form-label">sale_date</label>
                     <input type="date" class="form-control" id="sale_date" name="sale_date" value="{{ $comic->sale_date }}">
                 </div>
-                <a href=" {{route('comics.delete', $comic->id)}} "></a>
+                
                 <button type="submit" class="btn btn-primary">Submit</button>
+            </form>
+            <form action="{{ route('comics.destroy', $comic->id) }}" method="POST">
+                    @csrf
+                    @method('DELETE')
+                    <button class="btn btn-danger">Delete</button>
             </form>
         </div>
     </div>

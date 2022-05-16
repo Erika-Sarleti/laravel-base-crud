@@ -12,6 +12,8 @@ class ComicController extends Controller
         'title'=> 'required|unique:comics|min:5|max:100',
         'thumb'=> 'nullable|url|max:250',
         'series'=> 'nullable|max:100',
+        'description'=> 'nullable|max:1000',
+        'sale_date'=> 'nullable',
 
 
     ];
@@ -44,7 +46,11 @@ class ComicController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate($this->validationRules);
+        $formData = $request->all();
+        $newComic=Comic::create($formData);
+
+        return redirect()->route('comics.show', $newComic->id)->with('status', 'Completed with success!');
     }
 
     /**
@@ -104,6 +110,14 @@ class ComicController extends Controller
      */
     public function destroy(Comic $comic)
     {
-        //
+        $previousUrl=url()->previous();
+        if($previousUrl == route('comics.edit', $comic->id)){
+            $previousUrl = route('comics.index');
+        }
+        $comic->delete();
+
+        return redirect($previousUrl)->with('deleted', 'Deleted post id: ' . $comic->id);
+        
+
     }
 }
